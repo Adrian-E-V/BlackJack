@@ -1,6 +1,6 @@
 class Card:
     #This is my constructor. Each card must have a rank and a suit.
-    def __init__(self, rank, suit):
+    def __init__(self, rank: str, suit: str):
         self.rank = rank
         self.suit = suit
 
@@ -33,3 +33,10 @@ def createDeck():
                 card = Card(i, suit)
             deck.append(card)
     return deck
+
+#Blackjack decks have multiple decks shuffled together
+def multipleDecks(num: int):
+    megaDeck = []
+    for i in range(0, num):
+        megaDeck.extend(createDeck())
+    return megaDeck
