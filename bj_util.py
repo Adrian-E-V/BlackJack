@@ -1,3 +1,5 @@
+#This file allows for the creation of cards, decks, and multiple decks. These are used by the dealer and player files to play blackjack
+
 class Card:
     #This is my constructor. Each card must have a rank and a suit.
     def __init__(self, rank: str, suit: str):
@@ -40,3 +42,4 @@ def multipleDecks(num: int):
     for i in range(0, num):
         megaDeck.extend(createDeck())
     return megaDeck
+
