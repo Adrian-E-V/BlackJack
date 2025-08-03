@@ -14,7 +14,7 @@ def startGame():
     else:
         print("We will be playing with " + str(numDecks) + " decks.")
     print("You will be starting with $1000. Your goal is to have $2500.")
-    print("Let's begin.")
+    print("Let's begin. \n")
 
 def dealCard():
     global deck
@@ -22,8 +22,8 @@ def dealCard():
     if not deck: #checks if the deck has run out of cards. If so, reshuffles
         reshuffle()
     index = random.randrange(len(deck))
-    for card in deck:
-        print(card)
+    # for card in deck:
+    #     print(card)
     return deck.pop(index)
 
     

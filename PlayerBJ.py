@@ -41,9 +41,45 @@ def placeBets():
 def round():
     global cash
     bet = placeBets()
-    # print(type(bet))
-    # print("bet is " + str(bet))
+    print()
+
+    #Set up for player and dealer hands
+    #Will deal first to the dealer, then the player, and back and forth, like in actual blackjack.
+    dlrHand = []
+    plrHand = []
+    dlrHand.append(dealer.dealCard())
+    plrHand.append(dealer.dealCard())
+    dlrHand.append(dealer.dealCard())
+    plrHand.append(dealer.dealCard())
+
+    print(f"Dealer is showing a {dlrHand[0]}")
+    print(f"You have: {plrHand[0]}, {plrHand[1]}")
+    action = ""
+    print()
+    #figure out how to do aces
+    #Include player total (if ace do hard / soft)
     
+    while(action != "STAND"):
+        action = input("Do you HIT or STAND? ")
+        if (action == "HIT"):
+            plrHand.append(dealer.dealCard())
+            print("You have:", end=" ")
+            i = 0
+            while (i < len(plrHand)):
+                if (i == (len(plrHand) - 1)):
+                    print(plrHand[i])
+                else:
+                    print(plrHand[i], end=", ")
+                i += 1
+            print()
+        elif (action == "STAND"):
+            print()
+        else:
+            action = ""
+            print("Invalid action, try again.")
+     
+    #After the part where the player gambles, this is where we calculate whether they have won or lost
+    #I need to see if they lose from hitting. This is a check that needs to be performed earlier, probably when a player HITs
     
 
 
