@@ -14,7 +14,7 @@ class Card:
     
     #Python has a toString() just like Java!
     def __str__(self):
-        return "This is a " + str(self.rank) + " of " + self.suit + "\n" 
+        return str(self.rank) + " of " + self.suit + "\n" 
 
 #Creates a deck w/ all 52 cards, 13 of each suit
 def createDeck():

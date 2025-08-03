@@ -9,7 +9,12 @@ def startGame():
     global deck
     numDecks = int(input("How many decks would you like to play with? "))
     deck = bj_util.multipleDecks(numDecks)
-    # print("deck has been created")
+    if (numDecks == 1):
+        print("We will be playing with 1 deck.")
+    else:
+        print("We will be playing with " + str(numDecks) + " decks.")
+    print("You will be starting with $1000. Your goal is to have $2500.")
+    print("Let's begin.")
 
 def dealCard():
     global deck
@@ -17,10 +22,12 @@ def dealCard():
     if not deck: #checks if the deck has run out of cards. If so, reshuffles
         reshuffle()
     index = random.randrange(len(deck))
+    for card in deck:
+        print(card)
     return deck.pop(index)
 
     
 def reshuffle():
     global deck
-    # print("Accessed reshuffle function")
+    print("Reshuffling...")
     deck = bj_util.multipleDecks(numDecks)
