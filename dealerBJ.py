@@ -29,5 +29,6 @@ def dealCard():
     
 def reshuffle():
     global deck
-    print("Reshuffling...")
+    # print("Reshuffling...")
+    deck = []
     deck = bj_util.multipleDecks(numDecks)

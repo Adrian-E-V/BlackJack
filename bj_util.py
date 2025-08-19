@@ -11,6 +11,13 @@ class Card:
         return self.rank
     def getSuit(self):
         return self.suit
+    def getValue(self):
+        if (self.rank == "King") or (self.rank == "Queen") or (self.rank == "Jack"):
+            return 10
+        elif (self.rank == "Ace"):
+            return 11
+        else:
+            return int(self.rank)
     
     #Python has a toString() just like Java!
     def __str__(self):
