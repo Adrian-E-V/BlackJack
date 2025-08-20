@@ -83,6 +83,6 @@ def action(act):
             return (getState(), -1, True)
         
         if (plrTotal == dlrTotal):
-            return (getState(), 0.2, True)
+            return (getState(), 0, True)
     else:
         return (getState(), 1, True)
