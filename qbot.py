@@ -54,18 +54,28 @@ def learning(state, action, reward, newState, done, alpha = 0.2, gamma = 0.9):
     maxNum = max(getQ(newState))
     Q[state][action] = Q[state][action] + alpha*(reward + (gamma*maxNum) - Q[state][action])
 
-def playRounds(rounds, epsilon=0.1, alpha=0.2, gamma=0.9, debug=False):
+def playRounds(rounds, epsilon=0.1, alpha=0.2, gamma=0.9, debug=False, text=False):
     wins = 0
     losses = 0
     for _ in range(rounds):
         state = simpleBJ.round()
         done = False
 
+        if text:
+            print(f"Dealer: {state[1]}")
+            print(f"Player: {state[0]}")
+
         if debug:
             print(state)
 
         while not done:
             act = getAction(state, epsilon)
+            if text:
+                if (act == 0):
+                    print("Stand!")
+                else:
+                    print("Hit!")
+
             if debug:
                 print(act)
 
@@ -73,14 +83,23 @@ def playRounds(rounds, epsilon=0.1, alpha=0.2, gamma=0.9, debug=False):
             if debug:
                 print(newState, reward, done)
             
+            if text:
+                print(f"Player: {newState[0]}")
+
             learning(state, act, reward, newState, done, alpha, gamma)
 
             if (reward==1):
                 wins += 1
+                if text:
+                    print("Win! \n")
             elif (reward<0):
                 losses += 1
+                if text:
+                    print("Lose! \n")
+            elif done and text:
+                print("Tie! \n")
 
             state = newState
     print(f"The bot had {wins} wins and {losses} losses!")
 
-playRounds(1000000, debug=False)
+playRounds(500, debug=False, text=True)
