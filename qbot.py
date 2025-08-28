@@ -1,5 +1,6 @@
 import simpleBJ
 import random
+import pandas as pd
 
 #this will be the code for our bot's learning
 #We'll be using reinforcement learning with Q-learning
@@ -102,4 +103,18 @@ def playRounds(rounds, epsilon=0.1, alpha=0.2, gamma=0.9, debug=False, text=Fals
             state = newState
     print(f"The bot had {wins} wins and {losses} losses!")
 
-playRounds(500, debug=False, text=True)
+
+
+# This is the code for the tables that show up at the end of the agent's rounds
+def makeTables(ace):
+    dealerRange = range(2, 12)
+    playerRange = range(2, 22)
+    tableNoAce = pd.DataFrame(columns=dealerRange, index=playerRange)
+    # for dlrUpCard in dealerRange:
+    #     Q.keys()
+    print(tableNoAce)
+    
+
+# playRounds(500, debug=False, text=True)
+makeTables(False)
+
