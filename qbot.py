@@ -106,15 +106,38 @@ def playRounds(rounds, epsilon=0.1, alpha=0.2, gamma=0.9, debug=False, text=Fals
 
 
 # This is the code for the tables that show up at the end of the agent's rounds
+
+
 def makeTables(ace):
+    # making a subset of Q:
+    # dictStats = {k: v for k, v in Q.items() if (k[2] == ace)}
+    # print(list(dictStats.items()))
+
     dealerRange = range(2, 12)
     playerRange = range(2, 22)
-    tableNoAce = pd.DataFrame(columns=dealerRange, index=playerRange)
-    # for dlrUpCard in dealerRange:
-    #     Q.keys()
-    print(tableNoAce)
+    bjStats = pd.DataFrame(columns=dealerRange, index=playerRange)
+    bjStats.columns.name = "Dealer Up Card"
+    bjStats.index.name = "Player Total"
+
+    for dlr in dealerRange:
+        for plr in playerRange:
+            action = getAction((plr, dlr, ace), 0)
+            #calling this function does exactly what we want here. We need the preferred action at a specific state
+            #we pass 0 for epsilon so there is no randomness in the result, purely what the agents it should do in that state
+            if (action == 1):
+                bjStats.at[plr, dlr] = "H"
+            elif (action == 0):
+                bjStats.at[plr, dlr] = "S"
+
     
 
-# playRounds(500, debug=False, text=True)
+    print(bjStats)
+    
+
+playRounds(1000000, debug=False, text=False)
+print("\nHere are tables showing the agent's preferred action in different states.")
+print("Hard Hands - the agent does not have an ace")
 makeTables(False)
+print("\nSoft Hands - the agent has an ace")
+makeTables(True)
 
